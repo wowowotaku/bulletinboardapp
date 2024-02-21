@@ -1,0 +1,12 @@
+.bulletinboard-page-link {
+   color: #5196a6;
+ }
+ 
+ .bulletinboard-page-link:hover {
+   color: #407784;
+ }
+ 
+ .bulletinboard-active {
+   background-color: #5196a6 !important;
+   border-color: #5196a6 !important;
+ }

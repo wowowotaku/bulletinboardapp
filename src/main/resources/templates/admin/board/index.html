@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Board</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-5">
+    <h2 class="mb-4">Board Posts</h2>
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">User</th>
+                    <th scope="col">Rank</th>
+                    <th scope="col">Content</th>
+                    <th scope="col">Posted At</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="board : ${boardPage}">
+                    <th scope="row" th:text="${board.postId}"></th>
+                    <td th:text="${board.user.userName}"></td>
+                    <td th:text="${board.rank.rankName}"></td>
+                    <td th:text="${board.content}"></td>
+                    <td th:text="${#dates.format(board.createdAt, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <!-- ページネーション機能 -->
+        <div th:if="${boardPage.getTotalPages()>1}" class="d-flex justify-content-center">
+			<nav aria-label="掲示板">
+				<ul class="pagination">
+					<li class="page-item">
+						<span th:if="${boardPage.isFirst()}" class="page-link disabled">前</span>
+						<a th:unless="${boardPage.isFirst()}" th:href="@{/admin/board(page = ${boardPage.getNumber()-1})}" class="page-link bulletinboard-page-link">前</a> 
+					</li>
+					<li th:each="i : ${#numbers.sequence(0, boardPage.getTotalPages() - 1)}" class="page-item">
+						<span th:if="${i == boardPage.getNumber()}" class="page-link active bulletinboard-active" th:text="${i + 1}"></span>
+						<a th:unless = "${i == boardPage.getNumber()}" th:href="@{/admin/board(page = ${i})}" class="page-link bulletinboard-page-link" th:text="${i + 1}"></a> 
+					</li>
+					<li class="page-item">
+						<span th:if="${boardPage.isLast()}" class="page-link disabled">次</span>
+						<a th:unless="${boardPage.isLast()}" th:href="@{/admin/board(page = ${boardPage.getNumber()+1})}" class="page-link bulletinboard-page-link">次</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+    </div>
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
