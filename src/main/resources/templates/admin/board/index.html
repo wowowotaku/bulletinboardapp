@@ -19,6 +19,7 @@
                     <th scope="col">Rank</th>
                     <th scope="col">Content</th>
                     <th scope="col">Posted At</th>
+                    <th scope="col">Delete</th>
                 </tr>
             </thead>
             <tbody>
@@ -28,6 +29,11 @@
                     <td th:text="${board.rank.rankName}"></td>
                     <td th:text="${board.content}"></td>
                     <td th:text="${#dates.format(board.createdAt, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                    <td>
+						<form th:action="@{/admin/board/delete/{postId}(postId=${board.postId})}" method="post">
+							<button type="submit" class="btn btn-danger">削除</button>
+						</form>
+					</td>
                 </tr>
             </tbody>
         </table>

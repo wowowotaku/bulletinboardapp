@@ -7,6 +7,8 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -35,6 +37,12 @@ public class AdminBoardController {
 		model.addAttribute("boardPage", boardPage);
 		
 		return "admin/board/index";
+	}
+	
+	@PostMapping("/delete/{postId}")
+	public String delete(@PathVariable("postId") Integer postId) {
+		boardRepository.deleteById(postId);
+		return "redirect:/admin/board";
 	}
 
 }
