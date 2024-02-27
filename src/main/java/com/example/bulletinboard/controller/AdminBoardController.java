@@ -35,6 +35,7 @@ public class AdminBoardController {
 		}
 		
 		model.addAttribute("boardPage", boardPage);
+		model.addAttribute("keyword", keyword);
 		
 		return "admin/board/index";
 	}
