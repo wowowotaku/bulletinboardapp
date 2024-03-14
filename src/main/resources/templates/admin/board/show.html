@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>投稿詳細</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h2 class="mb-4">投稿詳細</h2>
+    <div class="card">
+        <div class="card-header">
+            投稿ID: <span th:text="${board.postId}"></span>
+        </div>
+        <div class="card-body">
+            <p class="card-text">投稿内容:</p>
+            <p th:text="${board.content}"></p>
+            <p>投稿者: <span th:text="${board.user.userName}"></span></p>
+            <p>ランク: <span th:text="${board.rank.rankName}"></span></p>
+            <p>投稿日時: <span th:text="${#dates.format(board.createdAt, 'yyyy-MM-dd HH:mm:ss')}"></span></p>
+        </div>
+        <div class="card-footer text-muted">
+            <a th:href="@{/admin/board}" class="btn btn-primary">戻る</a>
+        </div>
+    </div>
+</div>
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

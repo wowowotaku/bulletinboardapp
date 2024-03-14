@@ -40,6 +40,15 @@ public class AdminBoardController {
 		return "admin/board/index";
 	}
 	
+	@GetMapping("/{id}")
+	public String show(@PathVariable(name = "id") Integer id, Model model) {
+		Board board = boardRepository.getReferenceById(id);
+		
+		model.addAttribute("board", board);
+		
+		return "admin/board/show";
+	}
+	
 	@PostMapping("/delete/{postId}")
 	public String delete(@PathVariable("postId") Integer postId) {
 		boardRepository.deleteById(postId);
