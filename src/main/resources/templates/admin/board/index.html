@@ -27,6 +27,7 @@
                     <th scope="col">Rank</th>
                     <th scope="col">Content</th>
                     <th scope="col">Posted At</th>
+                    <th scope="col">詳細</th>
                     <th scope="col">Delete</th>
                 </tr>
             </thead>
@@ -37,6 +38,7 @@
                     <td th:text="${board.rank.rankName}"></td>
                     <td th:text="${board.content}"></td>
                     <td th:text="${#dates.format(board.createdAt, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                    <td><a th:href="@{/admin/board/__${board.postId}__}">詳細</a></td>
                     <td>
 						<form th:action="@{/admin/board/delete/{postId}(postId=${board.postId})}" method="post">
 							<button type="submit" class="btn btn-danger">削除</button>
@@ -45,6 +47,7 @@
                 </tr>
             </tbody>
         </table>
+        
         
         <!-- ページネーション機能 -->
         <div th:if="${boardPage.getTotalPages()>1}" class="d-flex justify-content-center">
